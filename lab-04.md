@@ -1,13 +1,13 @@
 Lab 04 - La Quinta is Spanish for next to Denny’s, Pt. 1
 ================
-Insert your name here
-Insert date here
+Sophie Boyd
+2-6-26
 
 ### Load packages and data
 
 ``` r
 library(tidyverse) 
-library(dsbox) 
+library(dsbox)
 ```
 
 ``` r
@@ -16,15 +16,42 @@ states <- read_csv("data/states.csv")
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here. Add code
-chunks as needed. Don’t forget to label your code chunk. Do not use
-spaces in code chunk labels.
+``` r
+view(dennys)
+nrow(dennys)
+```
+
+    ## [1] 1643
+
+``` r
+ncol(dennys)
+```
+
+    ## [1] 6
+
+The Denny’s dataset contains 1643 observations of 6 variables. Each row
+represents one Denny’s establishment. The variables are address, city,
+state, zip code, longitude, and latitude.
 
 ### Exercise 2
 
-Remove this text, and add your answer for Exercise 1 here. Add code
-chunks as needed. Don’t forget to label your code chunk. Do not use
-spaces in code chunk labels.
+``` r
+view(laquinta)
+nrow(laquinta)
+```
+
+    ## [1] 909
+
+``` r
+ncol(laquinta)
+```
+
+    ## [1] 6
+
+The La Quinta dataset contains 909 observations of 6 variables. Each row
+represents one La Quinta establishment. The variables are the same as
+the Denny’s dataset: address, city, state, zip code, longitude, and
+latitude.
 
 ### Exercise 3
 

@@ -1,7 +1,7 @@
 ---
 title: "Lab 04 - La Quinta is Spanish for next to Denny's, Pt. 1"
-author: "Insert your name here"
-date: "Insert date here"
+author: "Sophie Boyd"
+date: "2-6-26"
 output: github_document
 ---
 
@@ -9,7 +9,7 @@ output: github_document
 
 ```{r load-packages, message = FALSE}
 library(tidyverse) 
-library(dsbox) 
+library(dsbox)
 ```
 
 ```{r load-data, message = FALSE}
@@ -18,17 +18,23 @@ states <- read_csv("data/states.csv")
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here.
-Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
+```{r dennys-dimensions}
+view(dennys)
+nrow(dennys)
+ncol(dennys)
+```
+
+The Denny's dataset contains 1643 observations of 6 variables. Each row represents one Denny's establishment. The variables are address, city, state, zip code, longitude, and latitude.
 
 ### Exercise 2
 
-Remove this text, and add your answer for Exercise 2 here.
-Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
+```{r laquinta-dimensions}
+view(laquinta)
+nrow(laquinta)
+ncol(laquinta)
+```
+
+The La Quinta dataset contains 909 observations of 6 variables. Each row represents one La Quinta establishment. The variables are the same as the Denny's dataset: address, city, state, zip code, longitude, and latitude.
 
 ### Exercise 3
 
