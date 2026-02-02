@@ -98,4 +98,93 @@ laquinta <- laquinta %>%
   ))
 ```
 
+```{r laquinta-US}
+laquinta <- laquinta %>%
+  filter(country == "United States")
+```
 
+### Exercise 9
+
+```{r dennys-state}
+dennys %>%
+  count(state, sort = TRUE)
+```
+
+```{r laquinta-state}
+laquinta %>%
+  count(state, sort = TRUE)
+```
+
+Denny's has the most locations in California and the fewest locations in Delaware. La Quinta has the most locations in Texas and the fewest locations in Maine. These results do not surprise me, considering that California and Texas are both very large states and Maine and Delaware (especially Delaware) are much smaller. 
+
+```{r states-n}
+dennys %>%
+  count(state) %>%
+  inner_join(states, by = c("state" = "abbreviation"))
+```
+
+### Exercise 10
+
+```{r establishment}
+dennys <- dennys %>%
+  mutate(establishment = "Denny's")
+laquinta <- laquinta %>%
+  mutate(establishment = "La Quinta")
+```
+
+```{r bind}
+dn_lq <- bind_rows(dennys, laquinta)
+```
+
+```{r US-plot}
+ggplot(dn_lq, mapping = aes(
+  x = longitude,
+  y = latitude,
+  color = establishment
+)) +
+  geom_point()
+```
+
+### Exercise 11
+
+```{r NC-filter}
+dn_lq_NC <- dn_lq %>%
+  filter(state == "NC")
+```
+
+```{r NC-plot}
+ggplot(dn_lq_NC, mapping = aes(
+  x = longitude,
+  y = latitude,
+  color = establishment
+)) +
+  geom_point(alpha = .6) +
+  labs(x = "Longitude",
+       y = "Latitude",
+       title = "Denny's & La Quinta Locations in NC",
+       color = "Establishment")
+```
+
+Mitch Hedberg's joke seems to be somewhat supported in the North Carolina plot. With some exceptions, most of the La Quinta establishments are located relatively close to one or more Denny's establishments. 
+
+### Exercise 12
+
+```{r TX-filter}
+dn_lq_TX <- dn_lq %>%
+  filter(state == "TX")
+```
+
+```{r TX-plot}
+ggplot(dn_lq_TX, mapping = aes(
+  x = longitude,
+  y = latitude,
+  color = establishment
+)) +
+  geom_point(alpha = .6) +
+  labs(x = "Longitude",
+       y = "Latitude",
+       title = "Denny's & La Quinta Locations in TX",
+       color = "Establishment")
+```
+
+While there are clusters of many La Quinta and Denny's establishments located close together, overall, the joke does not hold up on the Texas map because there are many La Quinta locations with no Denny's locations nearby.
