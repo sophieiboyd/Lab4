@@ -38,20 +38,30 @@ The La Quinta dataset contains 909 observations of 6 variables. Each row represe
 
 ### Exercise 3
 
-...
+The La Quinta website lists many locations outside of the US, including in Canada, Mexico, China, New Zealand, Georgia, Turkiye, the UAE, Colombia, and Ecuador.
+
+The Denny's website seems to only contain locations in the US.
 
 ### Exercise 4
 
-...
+One way to determine if locations in either dataset are outside of the US would be to look at the values on the "state" variable. If the values are missing or do not indicate a US state, this would confirm that the establishment is located outside of the US. 
 
 ### Exercise 5
 
-...
+```{r dennys-US}
+dennys %>%
+  filter(!(state %in% states$abbreviation))
+```
+
+There do not appear to be any Denny's locations outside of the US.
 
 ### Exercise 6
 
-...
+```{r dennys-country}
+dennys <- dennys %>%
+  mutate(country = "United States")
+```
 
+### Exercise 7
  
-Add exercise headings as needed.
 
