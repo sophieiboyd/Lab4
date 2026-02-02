@@ -44,7 +44,7 @@ The Denny's website seems to only contain locations in the US.
 
 ### Exercise 4
 
-One way to determine if locations in either dataset are outside of the US would be to look at the values on the "state" variable. If the values are missing or do not indicate a US state, this would confirm that the establishment is located outside of the US. 
+One way to determine if locations in either dataset are outside of the US would be to look at the values on the "state" variable. If the values do not indicate a US state, this would confirm that the establishment is located outside of the US. 
 
 ### Exercise 5
 
@@ -64,4 +64,38 @@ dennys <- dennys %>%
 
 ### Exercise 7
  
+```{r laquinta-country}
+laquinta %>%
+  filter(!(state %in% states$abbreviation))
+```
+
+The La Quinta locations outside of the US are in:
+1. Mexico
+2. Mexico
+3. Mexico
+4. Mexico
+5. Colombia
+6. Mexico
+7. Mexico
+8. Canada
+9. Mexico
+10. Mexico
+11. Mexico
+12. Mexico
+13. Honduras
+14. Canada
+
+### Exercise 8
+
+```{r laquinta-country-variable}
+laquinta <- laquinta %>%
+  mutate(country = case_when(
+    state %in% state.abb ~ "United States",
+    state %in% c("ON", "BC") ~ "Canada",
+    state == "ANT" ~ "Colombia",
+    state %in% c("AG", "QR", "CH", "NL", "VE", "PU", "SL") ~ "Mexico",
+    state == "FM" ~ "Honduras"
+  ))
+```
+
 
