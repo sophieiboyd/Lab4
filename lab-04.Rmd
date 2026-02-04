@@ -120,10 +120,32 @@ Denny's has the most locations in California and the fewest locations in Delawar
 ```{r states-n}
 dennys %>%
   count(state) %>%
-  inner_join(states, by = c("state" = "abbreviation"))
+  inner_join(states, by = c("state" = "abbreviation")) 
 ```
 
 ### Exercise 10
+
+```{r dennys-sq-mi}
+dennys %>%
+  count(state) %>%
+  inner_join(states, by = c("state" = "abbreviation")) %>%
+  mutate(dn_sq_mi = n / area) %>%
+  count(state, dn_sq_mi) %>%
+  arrange(desc(dn_sq_mi))
+```
+
+DC has the most Denny's locations per thousand square miles.
+
+```{r laquinta-sq-mi}
+laquinta %>%
+  count(state) %>%
+  inner_join(states, by = c("state" = "abbreviation")) %>%
+  mutate(lq_sq_mi = n / area) %>%
+  count(state, lq_sq_mi) %>%
+  arrange(desc(lq_sq_mi))
+```
+
+Rhode Island has the most La Quinta locations per thousand square miles.
 
 ```{r establishment}
 dennys <- dennys %>%
@@ -187,4 +209,4 @@ ggplot(dn_lq_TX, mapping = aes(
        color = "Establishment")
 ```
 
-While there are clusters of many La Quinta and Denny's establishments located close together, overall, the joke does not hold up on the Texas map because there are many La Quinta locations with no Denny's locations nearby.
+While there are clusters of many La Quinta and Denny's establishments located close together, overall, the joke only partially holds up on the Texas map because there are many La Quinta locations with no Denny's locations nearby.

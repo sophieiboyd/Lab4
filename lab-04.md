@@ -186,7 +186,7 @@ California and Texas are both very large states and Maine and Delaware
 ``` r
 dennys %>%
   count(state) %>%
-  inner_join(states, by = c("state" = "abbreviation"))
+  inner_join(states, by = c("state" = "abbreviation")) 
 ```
 
     ## # A tibble: 51 × 4
@@ -205,6 +205,58 @@ dennys %>%
     ## # ℹ 41 more rows
 
 ### Exercise 10
+
+``` r
+dennys %>%
+  count(state) %>%
+  inner_join(states, by = c("state" = "abbreviation")) %>%
+  mutate(dn_sq_mi = n / area) %>%
+  count(state, dn_sq_mi) %>%
+  arrange(desc(dn_sq_mi))
+```
+
+    ## # A tibble: 51 × 3
+    ##    state dn_sq_mi     n
+    ##    <chr>    <dbl> <int>
+    ##  1 DC    0.0293       1
+    ##  2 RI    0.00324      1
+    ##  3 CA    0.00246      1
+    ##  4 CT    0.00216      1
+    ##  5 FL    0.00213      1
+    ##  6 MD    0.00210      1
+    ##  7 NJ    0.00115      1
+    ##  8 NY    0.00103      1
+    ##  9 IN    0.00102      1
+    ## 10 OH    0.000982     1
+    ## # ℹ 41 more rows
+
+DC has the most Denny’s locations per thousand square miles.
+
+``` r
+laquinta %>%
+  count(state) %>%
+  inner_join(states, by = c("state" = "abbreviation")) %>%
+  mutate(lq_sq_mi = n / area) %>%
+  count(state, lq_sq_mi) %>%
+  arrange(desc(lq_sq_mi))
+```
+
+    ## # A tibble: 48 × 3
+    ##    state lq_sq_mi     n
+    ##    <chr>    <dbl> <int>
+    ##  1 RI    0.00129      1
+    ##  2 FL    0.00113      1
+    ##  3 CT    0.00108      1
+    ##  4 MD    0.00105      1
+    ##  5 TX    0.000882     1
+    ##  6 TN    0.000712     1
+    ##  7 GA    0.000690     1
+    ##  8 NJ    0.000573     1
+    ##  9 MA    0.000568     1
+    ## 10 LA    0.000535     1
+    ## # ℹ 38 more rows
+
+Rhode Island has the most La Quinta locations per thousand square miles.
 
 ``` r
 dennys <- dennys %>%
@@ -278,6 +330,6 @@ ggplot(dn_lq_TX, mapping = aes(
 ![](lab-04_files/figure-gfm/TX-plot-1.png)<!-- -->
 
 While there are clusters of many La Quinta and Denny’s establishments
-located close together, overall, the joke does not hold up on the Texas
-map because there are many La Quinta locations with no Denny’s locations
-nearby.
+located close together, overall, the joke only partially holds up on the
+Texas map because there are many La Quinta locations with no Denny’s
+locations nearby.
